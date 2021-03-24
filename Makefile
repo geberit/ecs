@@ -36,7 +36,7 @@ check-license-headers:
 clean:
 	rm -rf build generated/elasticsearch/component experimental/generated/elasticsearch/component
 	# Clean all markdown files for use-cases
-	find ./use-cases -type f -name '*.md' -not -name 'README.md' -print0 | xargs -0 rm --
+	find ./use-cases -type f -name '*.md' -not -name 'README.md' -print0 | xargs -0 rm
 
 # Alias to generate source code for all languages.
 .PHONY: codegen
@@ -75,7 +75,7 @@ generator: ve
 # Generate Go code from the schema.
 .PHONY: gocodegen
 gocodegen:
-	find code/go/ecs -name '*.go' -not -name 'doc.go' | xargs rm
+	find code/go/ecs -name '*.go' -not -name 'doc.go' -delete
 	cd scripts \
 	  && $(FORCE_GO_MODULES) go run cmd/gocodegen/gocodegen.go \
 	        -version=$(VERSION) \
