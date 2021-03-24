@@ -61,6 +61,13 @@
 
       example: 1_proxySG
 
+    - name: name_rdns
+      level: custom
+      type: keyword
+      short: Reverse DNS record of the IP address that sent the event.
+      description: >
+        Same as host.name_rdns except for the observer fieldset. Refer to host.name_rdns for details.
+
     - name: product
       level: extended
       type: keyword

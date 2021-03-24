@@ -32,6 +32,23 @@
         qualified domain name, or a name specified by the user. The sender
         decides which value to use.
 
+    - name: name_rdns
+      level: custom
+      type: keyword
+      short: Reverse DNS record of the IP address that sent the event.
+      description: >
+        Reverse DNS record of the IP address that sent the event.
+
+        The field is set by the first component of the log collection pipeline.
+        It can be considered "trusted" as it is based on the sending IP address.
+        An advisory trying to fake this field would need to be able to control
+        the network (or DNS). It addresses the risk of one host that can send
+        events to the log collection system to pollute everything by being
+        able to choose (faking) a hostname at their will without restrictions.
+
+        TLS with client and server certificates is preferred. TODO: Define a
+        separate field for the trusted host name from a client certificate.
+
     - name: id
       level: core
       type: keyword
