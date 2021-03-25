@@ -10,7 +10,7 @@ include::{asciidoc-dir}/../../shared/attributes.asciidoc[]
 [[ecs-reference]]
 == Overview
 
-This is the documentation of ECS version 1.11.0.
+This is the documentation of ECS version 1.11.0-custom.
 
 [float]
 === What is ECS?
