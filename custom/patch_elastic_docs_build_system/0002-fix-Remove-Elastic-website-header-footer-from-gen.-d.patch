@@ -1,0 +1,51 @@
+From fe668f9b0cde3e2d0e3720e5e47a0d4759ce690f Mon Sep 17 00:00:00 2001
+From: Robin Schneider <robin.schneider@geberit.com>
+Date: Fri, 13 Aug 2021 19:28:33 +0200
+Subject: [PATCH 2/3] fix: Remove Elastic website header/footer from gen. docs
+
+---
+ resources/web/template.html | 21 ---------------------
+ 1 file changed, 21 deletions(-)
+
+diff --git a/resources/web/template.html b/resources/web/template.html
+index 13e1070..a5a291e 100644
+--- a/resources/web/template.html
++++ b/resources/web/template.html
+@@ -46,22 +46,6 @@
+   <!--© 2015-2021 Elasticsearch B.V. Copying, publishing and/or distributing without written permission is strictly prohibited.-->
+ 
+   <body>
+-    <div id='elastic-nav' style="display:none;"></div>
+-    <script src='https://www.elastic.co/elastic-nav.js'></script>
+-
+-    <!-- Subnav -->
+-    <div>
+-      <div>
+-        <div class="tertiary-nav d-none d-md-block">
+-          <div class="container">
+-            <div class="p-t-b-15 d-flex justify-content-between nav-container">
+-              <div class="breadcrum-wrapper"><span><a href="/guide/" style="font-size: 14px; font-weight: 600; color: #000;">Docs</a></span></div>
+-            </div>
+-          </div>
+-        </div>
+-      </div>
+-    </div>
+-
+     <div class="main-container">
+       <section id="content" >
+         <div class="content-wrapper">
+@@ -92,11 +76,6 @@
+ 
+         </div>
+ 
+-
+-<div id='elastic-footer'></div>
+-<script src='https://www.elastic.co/elastic-footer.js'></script>
+-<!-- Footer Section end-->
+-
+       </section>
+     </div>
+ 
+-- 
+2.26.2
+

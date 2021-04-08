@@ -47,6 +47,7 @@ codegen: gocodegen
 docs:
 	if [ ! -d $(PWD)/build/docs ]; then \
 		git clone --depth=1 https://github.com/elastic/docs.git ./build/docs ; \
+		cd build/docs; git am ../../custom/patch_elastic_docs_build_system/*; \
 	fi
 	./build/docs/build_docs --asciidoctor --doc ./docs/index.asciidoc --chunk=2 $(OPEN_DOCS) --out ./build/html_docs
 

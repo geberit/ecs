@@ -1,0 +1,45 @@
+From ad52bc3f1c1d87f17d647caf465cd20a210011c9 Mon Sep 17 00:00:00 2001
+From: Robin Schneider <robin.schneider@geberit.com>
+Date: Tue, 13 Apr 2021 12:14:53 +0200
+Subject: [PATCH 3/3] chore: Disable edit_me links which can be confusing for
+ internal use
+
+---
+ build_docs.pl | 7 -------
+ 1 file changed, 7 deletions(-)
+
+diff --git a/build_docs.pl b/build_docs.pl
+index 8dc7877..3e5db8c 100755
+--- a/build_docs.pl
++++ b/build_docs.pl
+@@ -150,7 +150,6 @@ sub _guess_opts {
+ #===================================
+     my $index = shift;
+ 
+-    $Opts->{edit_urls} = {};
+     $Opts->{roots} = {};
+     my $toplevel = _find_toplevel( $index->parent );
+     my $remote = _pick_best_remote( $toplevel );
+@@ -162,9 +161,6 @@ sub _guess_opts {
+ 
+     $Opts->{branch} = $branch;
+     $Opts->{roots}{ $repo_name } = $toplevel;
+-    $Opts->{edit_urls}{ $toplevel } = ES::Repo::edit_url_for_url_and_branch(
+-        $remote || 'unknown', $branch
+-    );
+     for my $resource ( @{ $Opts->{resource} } ) {
+         $toplevel = _find_toplevel( $resource );
+         $remote = _pick_best_remote( $toplevel );
+@@ -173,9 +169,6 @@ sub _guess_opts {
+         # We couldn't find the top level so lets make a wild guess.
+         $toplevel = $resource unless $toplevel;
+         $Opts->{roots}{ $repo_name } = $toplevel;
+-        $Opts->{edit_urls}{ $toplevel } = ES::Repo::edit_url_for_url_and_branch(
+-            $remote || 'unknown', $branch
+-        );
+     }
+ }
+ 
+-- 
+2.26.2
+
