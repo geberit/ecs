@@ -1,0 +1,23 @@
+---
+
+# SPDX-FileCopyrightText: 2021 Robin Schneider <robin.schneider@geberit.com>
+#
+# SPDX-License-Identifier: CC0-1.0
+
+# Configuration for probot/semantic-pull-requests GitHub check bot
+#
+# Installation/configuration docs here
+# https://github.com/probot/semantic-pull-requests#configuration
+
+scopes:
+  - core
+  - extended
+  - custom
+
+  # Commit that our organization cherry-picks and publishes. Internal is the
+  # default. No need to publish internal examples. They are not useful
+  # externally.
+  - public
+  - public core
+  - public extended
+  - public custom

@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+# SPDX-FileCopyrightText: 2021 Robin Schneider <robin.schneider@geberit.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+# git cherry-pick commits that are intended for publication into their own branch.
+# WARNING: Not intended for very sensitive content because of git protocol
+# attacks when both branches are in the same repo.
+
+PS4='+ $(date --rfc-3339=seconds), ${BASH_SOURCE-}:${LINENO-}: '
+export PS4
+trap 'echo Encountered an unexpected error. Exiting with exit code $? in ${BASH_SOURCE-}:${LINENO-}. >&2' ERR
+set -o nounset -o pipefail -o errexit -o errtrace
+
+based_on_upstream_ecs_release="$(sed --regexp-extended 's/-.*//;' "$(git rev-parse --show-toplevel)/version")"
+
+git checkout -B custom-public "v${based_on_upstream_ecs_release}"
+
+git --no-pager log "v${based_on_upstream_ecs_release}"..custom --reverse --extended-regexp --grep '^[a-z]+\([^(]*\bpublic\b[^)]*\)!?: ' --format='format:%H%n' | grep -v '^$' | while read -r commit_hash; do
+    git cherry-pick "$commit_hash"
+done

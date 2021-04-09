@@ -72,6 +72,11 @@ generate: generator legacy_use_cases codegen
 generator: ve
 	$(PYTHON) scripts/generator.py --strict --include "${INCLUDE}"
 
+# git cherry-pick commits that are intended for publication into their own branch.
+.PHONY: recreate_custom_public_branch
+recreate_custom_public_branch:
+	./custom/bin/recreate_custom_public_branch
+
 # Generate Go code from the schema.
 .PHONY: gocodegen
 gocodegen:
