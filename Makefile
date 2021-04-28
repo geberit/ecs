@@ -8,6 +8,9 @@ OPEN_DOCS        ?= "--open"
 PYTHON           := build/ve/bin/python
 VERSION          := $(shell cat version)
 
+CURL_OPTIONS     ?= -u "$(shell get_es_creds _prod)" -k
+CURL_BASE_URL    ?= $(shell get_es_url _prod)
+
 #
 # Targets (sorted alphabetically)
 #
@@ -140,3 +143,14 @@ build-internal:
 .PHONY: yamllint
 yamllint: ve
 	build/ve/bin/yamllint schemas/*.yml
+
+# Deploy component template.
+.PHONY: deploy-component-template
+deploy-component-template: generated/elasticsearch/7/component_template_custom.json
+	@curl $(CURL_OPTIONS) -XPOST "$(CURL_BASE_URL)/_component_template/ecs_$(VERSION)" -H "Content-Type: application/json" -d '@$<'
+	@echo
+
+# Generate component template.
+generated/elasticsearch/7/component_template_custom.json: generated/elasticsearch/7/template.json
+	@if [ ! -f local_template_filter.jq ]; then echo "." > local_template_filter.jq; fi
+	@jq --arg now "$(shell date --rfc-3339=seconds)" --arg git_commit_hash "$(shell git rev-parse HEAD)" --from-file transform_to_component_template.jq --compact-output "$<" | jq --from-file local_template_filter.jq > "$@"
