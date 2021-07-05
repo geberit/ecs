@@ -150,6 +150,19 @@
         Only relevant when `file.type` is "file".
       example: 16384
 
+    - name: offset
+      level: custom
+      type: long
+      short: File position offset in bytes.
+      description: >
+        File position offset in bytes.
+
+        Only relevant when `file.type` is "file".
+
+        Used for example by log parsers like Logstash or vector.dev to log at
+        which position in an input log file they are currently reading.
+      example: 16384
+
     - name: mtime
       level: extended
       type: date
