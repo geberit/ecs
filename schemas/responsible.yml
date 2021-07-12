@@ -1,0 +1,25 @@
+---
+- name: responsible
+  title: Responsible
+  group: 2
+  short: Fields that define who is responsible for an alarm.
+  description: >
+    The responsible fields can be used when it is easier to define who is
+    responsible for an issue on the system that emits an event. Examples
+    include scripts that already have a maintainer define and other departments
+    that can define the groups that should handle alerts better in their own
+    system.
+  type: group
+  fields:
+
+    - name: group
+      level: custom
+      type: keyword
+      description: >
+        The name of the group or working group that is responsible.
+
+    - name: email
+      level: custom
+      type: keyword
+      description: >
+        Email address of the person or group that is responsible.

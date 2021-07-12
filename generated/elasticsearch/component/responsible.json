@@ -1,0 +1,24 @@
+{
+  "_meta": {
+    "documentation": "https://www.elastic.co/guide/en/ecs/current/ecs-responsible.html",
+    "ecs_version": "1.10.0-custom"
+  },
+  "template": {
+    "mappings": {
+      "properties": {
+        "responsible": {
+          "properties": {
+            "email": {
+              "ignore_above": 1024,
+              "type": "keyword"
+            },
+            "group": {
+              "ignore_above": 1024,
+              "type": "keyword"
+            }
+          }
+        }
+      }
+    }
+  }
+}
