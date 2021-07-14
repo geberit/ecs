@@ -40,6 +40,15 @@
         If the event wasn't read from a log file, do not populate this field.
       example: "/var/log/fun-times.log"
 
+    - name: file.name
+      level: custom
+      type: keyword
+      short: File name of the log file this event came from.
+      description: >
+        File name of the log file this event came from.
+
+        Added additional to log.file.path so that only the file name can be shown in Kibana to save space.
+      example: "fun-times.log"
 
     - name: original
       level: core
