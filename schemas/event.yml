@@ -684,6 +684,24 @@
 
         In case the two timestamps are identical, @timestamp should be used.
 
+    - name: created_delay
+      level: custom
+      type: long
+      format: duration
+      input_format: nanoseconds
+      output_format: asMilliseconds
+      output_precision: 1
+      short: Delay between event.created and @timestamp in nanoseconds.
+      description: >
+        Delay between event.created and @timestamp in nanoseconds.
+
+        This field is only populated for troubleshooting issues with the log
+        collection pipeline.
+
+        Note that @timestamp might be corrected (timestamp QA) if the delay is
+        too big. This field will contain the difference of event.created and
+        the timestamp value when the event originated.
+
     - name: start
       level: extended
       type: date
