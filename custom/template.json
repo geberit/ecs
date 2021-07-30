@@ -1,0 +1,30 @@
+{
+  "order": 1,
+  "settings": {
+    "analysis": {
+      "normalizer": {
+        "lowercase_normalizer": {
+          "type": "custom",
+          "filter": [
+            "lowercase"
+          ]
+        },
+        "uppercase_normalizer": {
+          "type": "custom",
+          "filter": [
+            "uppercase"
+          ]
+        }
+      }
+    },
+    "index": {
+      "mapping": {
+        "total_fields": {
+          "limit": 2000
+        }
+      },
+      "refresh_interval": "5s"
+    }
+  },
+  "mappings": {}
+}

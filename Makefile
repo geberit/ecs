@@ -135,7 +135,8 @@ build/ve/bin/activate: scripts/requirements.txt
 .PHONY: build-internal
 build-internal:
 	rm -rf build/html_docs
-	$(MAKE) OPEN_DOCS="" generator docs
+	$(PYTHON) scripts/generator.py --strict --include "${INCLUDE}" --template-settings custom/template.json
+	$(MAKE) OPEN_DOCS="" docs
 	cp -a generated/ build/html_docs
 	git checkout generated/ docs/field-details.asciidoc docs/index.asciidoc
 
