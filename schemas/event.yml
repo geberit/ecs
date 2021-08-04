@@ -595,6 +595,11 @@
         If the event source does not publish its own severity,
         you may optionally copy the `log.syslog.severity.code` to `event.severity`.
 
+        At our organization, across all logs the severity values are
+        standardized to be common Syslog values.
+        Refer to https://en.wikipedia.org/wiki/Syslog#Severity_level[Syslog severity levels in Wikipedia]
+        or https://datatracker.ietf.org/doc/html/rfc5424#section-6.2.1[RFC 5424] for details.
+
     - name: original
       level: core
       type: keyword
