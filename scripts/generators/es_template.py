@@ -168,7 +168,7 @@ def entry_for(field):
                 if mf_type == 'keyword':
                     ecs_helpers.dict_copy_existing_keys(mf, mf_entry, ['normalizer', 'ignore_above'])
                 elif mf_type == 'text':
-                    ecs_helpers.dict_copy_existing_keys(mf, mf_entry, ['norms'])
+                    ecs_helpers.dict_copy_existing_keys(mf, mf_entry, ['norms', 'analyzer'])
                 field_entry['fields'][mf['name']] = mf_entry
 
     except KeyError as ex:

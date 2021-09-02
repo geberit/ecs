@@ -50,6 +50,10 @@
       level: extended
       type: keyword
       short: Custom name of the observer.
+      multi_fields:
+        - type: text
+          name: alnum
+          analyzer: pattern
       description: >
         Custom name of the observer.
 
@@ -65,6 +69,10 @@
       level: custom
       type: keyword
       short: Reverse DNS record of the IP address that sent the event.
+      multi_fields:
+        - type: text
+          name: alnum
+          analyzer: pattern
       description: >
         Same as host.name_rdns except for the observer fieldset. Refer to host.name_rdns for details.
 

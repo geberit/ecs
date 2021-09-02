@@ -25,6 +25,10 @@
       level: core
       type: keyword
       short: Name of the host.
+      multi_fields:
+        - type: text
+          name: alnum
+          analyzer: pattern
       description: >
         Name of the host.
 
@@ -36,6 +40,10 @@
       level: custom
       type: keyword
       short: Reverse DNS record of the IP address that sent the event.
+      multi_fields:
+        - type: text
+          name: alnum
+          analyzer: pattern
       description: >
         Reverse DNS record of the IP address that sent the event.
 
