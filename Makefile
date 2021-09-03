@@ -12,9 +12,9 @@ VERSION          := $(shell cat version)
 # Targets (sorted alphabetically)
 #
 
-# Default build generates main and experimental artifacts
+# Default target
 .PHONY: all
-all: generate experimental
+all: build-internal
 
 # Check verifies that all of the committed files that are generated are
 # up-to-date.
@@ -120,6 +120,15 @@ build/ve/bin/activate: scripts/requirements.txt
 	@test -d build/ve || python3 -mvenv build/ve
 	@build/ve/bin/pip install -Ur scripts/requirements.txt
 	@touch build/ve/bin/activate
+
+# Build docs for organization internal deployment.
+# Include generated files to be able to link to CSV.
+.PHONY: build-internal
+build-internal:
+	rm -rf build/html_docs
+	$(MAKE) OPEN_DOCS="" generator docs
+	cp -a generated/ build/html_docs
+	git checkout generated/ docs/field-details.asciidoc docs/index.asciidoc
 
 # Check YAML syntax (currently not enforced).
 .PHONY: yamllint
