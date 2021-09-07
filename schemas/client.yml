@@ -58,6 +58,19 @@
         the octet as an unsigned integer. Successive octets are separated by a
         hyphen.
 
+    - name: name
+      level: custom
+      type: keyword
+      short: Name of the client.
+      multi_fields:
+        - type: text
+          name: alnum
+          analyzer: pattern
+      description: >
+        Name of the client.
+
+        Otherwise the same as the host.name field. See there for details.
+
     - name: domain
       level: core
       type: keyword
