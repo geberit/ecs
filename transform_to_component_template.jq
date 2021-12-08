@@ -7,6 +7,8 @@
   template: {
     settings: .settings,
     mappings: (.mappings
+      | .dynamic_templates[0].strings_as_text = { "mapping": { "norms": false, "type": "text" }, "match_mapping_type": "string" }
+      | del(.dynamic_templates[0].strings_as_keyword)
       | .properties.host.properties.domain.normalizer = "lowercase_normalizer"
       | .properties.host.properties.hostname.normalizer = "lowercase_normalizer"
       | .properties.host.properties.mac.normalizer = "uppercase_normalizer"
